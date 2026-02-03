@@ -1,0 +1,13 @@
+---
+const { title, description, buttonText, buttonLink } = Astro.props;
+---
+
+<section class="final-cta bg-blue-600 text-white py-20">
+  <div class="container text-center">
+    <h2 class="text-3xl font-bold mb-4">{title}</h2>
+    <p class="mb-8">{description}</p>
+    <a href={buttonLink} class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
+      {buttonText}
+    </a>
+  </div>
+</section>

@@ -1,11 +1,162 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ArticleCard from "../components/content/ArticleCard.astro";
+import PodcastCard from "../components/content/PodcastCard.astro";
+import AboutAuthor from "../components/content/AboutAuthor.astro";
+import FinalCTA from "../components/content/FinalCTA.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="Inicio"
+  description="Blog de Gabnels sobre finanzas, crítica social y autoría"
+>
+
+  <!-- =========================
+       HERO (NO SE TOCA)
+       ========================= -->
+  <Hero
+    title="Pensamiento independiente, finanzas y literatura"
+    subtitle="Análisis claros para quienes no se conforman con lo que les dicen."
+    ctaText="Explorar artículos"
+    ctaLink="/finanzas"
+  />
+
+  <!-- =========================
+       CUADRO DE PRUEBA (TAILWIND)
+       ========================= -->
+  <div class="bg-red-200 p-10 text-center">
+    PRUEBA TAILWIND
+  </div>
+
+  <!-- =========================
+       PILARES DE CONTENIDO
+       ========================= -->
+  <section class="section-soft">
+    <div class="container text-center">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
+        Qué encontrarás aquí
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-2">Finanzas</h3>
+          <p>
+            Aprende claridad y educación financiera, inversiones y negocios digitales.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-2">Crítica Social</h3>
+          <p>
+            Reflexiona con pensamiento propio sobre la sociedad y temas polémicos.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-bold mb-2">Autor</h3>
+          <p>
+            Explora mi obra, recomendaciones de libros y análisis literarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTENIDO DESTACADO
+       ========================= -->
+  <section class="section-soft">
+    <div class="container">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
+        Contenido destacado
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ArticleCard
+          title="Cómo invertir con seguridad"
+          excerpt="Aprende los fundamentos para hacer crecer tu dinero de manera inteligente."
+          link="/finanzas/como-invertir"
+          category="Finanzas"
+        />
+
+        <ArticleCard
+          title="Reflexión sobre la sociedad actual"
+          excerpt="Analizamos los retos del pensamiento crítico en la era digital."
+          link="/critica-social/reflexion-sociedad"
+          category="Crítica social"
+        />
+
+        <ArticleCard
+          title="Mi último libro: estrategias de autor"
+          excerpt="Descubre el proceso de creación y recomendaciones de lectura."
+          link="/autor/ultimo-libro"
+          category="Autor"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       PODCAST
+       ========================= -->
+  <section class="section-soft">
+    <div class="container">
+      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
+        Último episodio del Podcast
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <PodcastCard
+          title="Mentalidad financiera"
+          description="Cómo gestionar tu dinero y crecer tu patrimonio paso a paso."
+          link="/podcast/mentalidad-financiera"
+          episodeNumber="12"
+        />
+
+        <PodcastCard
+          title="Pensamiento crítico en la sociedad actual"
+          description="Reflexión sobre la información y manipulación en redes."
+          link="/podcast/pensamiento-critico"
+          episodeNumber="11"
+        />
+
+        <PodcastCard
+          title="Literatura y creatividad"
+          description="Cómo los libros pueden transformar tu forma de pensar."
+          link="/podcast/literatura-creatividad"
+          episodeNumber="10"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SOBRE EL AUTOR
+       ========================= -->
+  <section class="section-soft">
+    <div class="container">
+      <AboutAuthor
+        name="Gabnels"
+        description="Soy un creador de contenido apasionado por las finanzas, la crítica social y la literatura. Aquí comparto mi visión y experiencias."
+        imageUrl="/images/author.jpg"
+        link="/sobre-mi"
+      />
+    </div>
+  </section>
+
+  <!-- =========================
+       CTA FINAL
+       ========================= -->
+  <section class="section-soft">
+    <div class="container">
+      <FinalCTA
+        title="No te pierdas ninguna actualización"
+        description="Suscríbete al newsletter y recibe los mejores contenidos directo en tu correo."
+        buttonText="Suscribirme"
+        buttonLink="/newsletter"
+      />
+    </div>
+  </section>
+
+</BaseLayout>

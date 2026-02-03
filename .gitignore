@@ -22,3 +22,21 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local env files
+.env.local
+.env.development
+
+# editor folders
+.vscode/
+.idea/
+
+# testing
+coverage/
+
+# system
+Thumbs.db
+
+# optional lockfiles (solo si trabajas en equipo con un solo gestor)
+pnpm-lock.yaml
+yarn.lock
