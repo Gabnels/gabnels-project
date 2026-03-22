@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: "mentalidad-financiera" } },
+    { params: { slug: "pensamiento-critico" } },
+    { params: { slug: "literatura-creatividad" } }
+  ];
+}
+
+const { slug } = Astro.params;
+
+const episodes = {
+  "mentalidad-financiera": {
+    title: "Mentalidad financiera",
+    content: "Contenido del episodio sobre finanzas..."
+  },
+  "pensamiento-critico": {
+    title: "Pensamiento crítico en la sociedad actual",
+    content: "Contenido del episodio sobre pensamiento crítico..."
+  },
+  "literatura-creatividad": {
+    title: "Literatura y creatividad",
+    content: "Contenido del episodio sobre literatura..."
+  }
+};
+
+const episode = episodes[slug];
+---
+
+<BaseLayout title={episode.title}>
+  <section class="section">
+    <div class="container max-w-3xl">
+
+      <h1 class="text-3xl font-bold mb-6">
+        {episode.title}
+      </h1>
+
+      <p class="text-lg text-gray-700">
+        {episode.content}
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>

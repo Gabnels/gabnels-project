@@ -1,188 +1,150 @@
 /* =========================
-   Fuentes (Google Fonts)
-   ========================= */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap");
-
-/* =========================
-   Tailwind Core
+   Tailwind Layers
    ========================= */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =========================
-   Estilos globales base
+   Base Layer Overrides
    ========================= */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  body {
+    @apply bg-white text-gray-800 antialiased;
+    margin: 0;
+    padding: 0;
+  }
 
-body {
-  background-color: #ffffff;
-  color: #1f2937;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-brand-secondary;
+    margin-top: 0;
+  }
 
-  /* Tipografía base (lectura) */
-  font-family:
-    "Inter",
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif;
+  p {
+    @apply text-base leading-relaxed text-gray-600 mb-4;
+  }
 
-  margin: 0;
-  padding: 0;
-}
+  a {
+    @apply text-brand-secondary no-underline underline-offset-4 transition-colors duration-200;
+  }
 
-/* =========================
-   Tipografía editorial
-   ========================= */
+  a:hover {
+    @apply underline opacity-80;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family:
-    "Merriweather", Georgia, Cambria, "Times New Roman", Times, serif;
-  color: #111827;
-  margin-top: 0;
-}
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-h1 {
-  font-size: 2.75rem; /* más impacto editorial */
-  line-height: 1.2;
-  font-weight: 700;
-  margin-bottom: 1.25rem;
-}
+  /* Transiciones SOLO en elementos interactivos */
+  a,
+  button,
+  input,
+  textarea {
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      opacity 0.2s ease;
+  }
 
-h2 {
-  font-size: 2rem;
-  line-height: 1.3;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-  line-height: 1.4;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #374151;
-  margin-bottom: 1rem;
-}
-
-/* =========================
-   Enlaces
-   ========================= */
-
-a {
-  color: #1f2937;
-  text-decoration: none;
-  text-underline-offset: 4px;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* =========================
-   Contenedores
-   ========================= */
-
-.container {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-/* =========================
-   Ritmo vertical global
-   ========================= */
-
-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-/* Sección principal (Hero) */
-.section-hero {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
-
-/* Secciones secundarias */
-.section-soft {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-/* Separación entre bloques internos */
-.stack > * + * {
-  margin-top: 1.5rem;
-}
-
-/* =========================
-   Secciones secundarias
-   ========================= */
-
-.section-soft {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  background-color: #f9fafb; /* gris muy suave */
-}
-
-@media (min-width: 768px) {
-  .section-soft {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+  /* 2️⃣ Focus visible (accesibilidad real) */
+  :focus-visible {
+    outline: 2px solid theme(colors.brand.secondary);
+    outline-offset: 3px;
   }
 }
 
 /* =========================
-   Grid editorial base
+   Components Layer
    ========================= */
+@layer components {
+  /* Container system */
+  .container {
+    @apply max-w-7xl mx-auto px-6;
+  }
 
-.grid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  /* Sections */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-soft {
+    @apply py-12 md:py-20 bg-brand-soft;
+  }
+
+  .section-hero {
+    @apply py-24 md:py-32;
+  }
+
+  /* Vertical spacing system */
+  .stack > * + * {
+    margin-top: 1.5rem;
+  }
+
+  /* Responsive cards grid */
+  .grid-cards {
+    @apply grid gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  /* 1️⃣ Buttons micro-interaction */
+  .btn {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  /* 4️⃣ Card micro-interaction reutilizable */
+  .card {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+  }
 }
 
 /* =========================
-   Fix de listas (muy importante)
+   Reveal Animation System
    ========================= */
-
-ul {
-  padding-left: 0;
-  margin: 0;
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
 }
 
-li {
-  list-style: none;
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* =========================
-   Reset de listas (seguro)
+   Accessibility
    ========================= */
-
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

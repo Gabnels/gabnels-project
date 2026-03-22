@@ -1,0 +1,47 @@
+---
+---
+
+<input
+  id="searchInput"
+  type="text"
+  placeholder="Buscar artículos..."
+  class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring"
+/>
+
+<div id="results" class="mt-6 space-y-4"></div>
+
+<script>
+const input = document.getElementById("searchInput");
+const results = document.getElementById("results");
+
+let posts = [];
+
+fetch("/search.json")
+  .then(r => r.json())
+  .then(data => posts = data);
+
+input.addEventListener("input", () => {
+  const q = input.value.toLowerCase().trim();
+
+  if (!q) {
+    results.innerHTML = "";
+    return;
+  }
+
+  const filtered = posts.filter(post =>
+    post.title.toLowerCase().includes(q) ||
+    post.description.toLowerCase().includes(q) ||
+    post.category.toLowerCase().includes(q) ||
+    post.tags.join(" ").toLowerCase().includes(q)
+  );
+
+  results.innerHTML = filtered.length
+    ? filtered.map(p => `
+      <a href="${p.url}" class="block p-4 border rounded-xl hover:bg-gray-50">
+        <h3 class="font-semibold">${p.title}</h3>
+        <p class="text-sm text-gray-600">${p.description}</p>
+      </a>
+    `).join("")
+    : "<p class='text-gray-500'>No se encontraron resultados</p>";
+});
+</script>

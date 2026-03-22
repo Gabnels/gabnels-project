@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import author from "../../assets/hero/gabnels-author.jpg";
+
+const { title, subtitle, ctaText, ctaLink } = Astro.props;
+---
+
+<section class="bg-white py-32">
+  <div class="container grid md:grid-cols-2 gap-12 items-center">
+
+    <!-- TEXTO -->
+    <div class="text-center md:text-left max-w-xl mx-auto md:mx-0">
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
+        {title}
+      </h1>
+
+      <p class="text-xl text-gray-600 mb-10">
+        {subtitle}
+      </p>
+
+      {ctaText && ctaLink && (
+        <a
+          href={ctaLink}
+          class="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+        >
+          {ctaText}
+        </a>
+      )}
+    </div>
+
+    <!-- IMAGEN -->
+    <div class="flex justify-center md:justify-end">
+  <div class="relative max-w-md">
+
+    <div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-transparent rounded-3xl -z-10"></div>
+
+    <Image
+      src={author}
+      alt="Gabnels - Author"
+      width={500}
+      height={600}
+      class="rounded-3xl shadow-xl object-cover"
+      priority
+    />
+
+  </div>
+</div>
+</section>

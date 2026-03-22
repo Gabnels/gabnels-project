@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionHeader from "../../components/ui/SectionHeader.astro";
+import Card from "../../components/ui/Card.astro";
+import Badge from "../../components/ui/Badge.astro";
+import Button from "../../components/ui/Button.astro";
+import CategoriesSidebar from "../../components/blog/CategoriesSidebar.astro";
+import Breadcrumb from "../../components/ui/Breadcrumb.astro";
+
+import { getCollection } from "astro:content";
+
+/* =========================
+   PAGINACIÓN
+   ========================= */
+
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("blog");
+
+  const sorted = posts.sort(
+    (a, b) => new Date(b.data.date) - new Date(a.data.date)
+  );
+
+  return paginate(sorted, {
+    pageSize: 6
+  });
+}
+
+const { page } = Astro.props;
+const posts = page?.data ?? [];
+
+/* =========================
+   CONTADOR CATEGORÍAS
+   ========================= */
+
+const allPosts = await getCollection("blog");
+
+const categoryCount = allPosts.reduce((acc, post) => {
+  const cat = post.data.category;
+  acc[cat] = (acc[cat] || 0) + 1;
+  return acc;
+}, {});
+---
+
+<BaseLayout
+  title="Blog"
+  description="Artículos sobre finanzas, pensamiento crítico y literatura"
+>
+
+<section class="section-soft">
+  <div class="container">
+
+    <SectionHeader
+      title="Blog"
+      subtitle="Explora todos los artículos publicados"
+    />
+
+    <!-- Breadcrumb -->
+    <div class="mt-4">
+      <Breadcrumb
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: "Blog" }
+        ]}
+      />
+    </div>
+
+    <!-- Layout -->
+    <div class="grid lg:grid-cols-[250px_1fr] gap-10 mt-10">
+
+      <!-- SIDEBAR -->
+      <aside class="order-2 lg:order-1">
+        <CategoriesSidebar categories={categoryCount} />
+      </aside>
+
+      <!-- POSTS -->
+      <div class="order-1 lg:order-2">
+
+        <!-- grid -->
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+          {posts?.map(post => (
+            <Card>
+
+              <Badge
+                label={`${post.data.category} (${categoryCount[post.data.category]})`}
+                href={`/blog/categoria/${post.data.category.toLowerCase().replace(/\s+/g,"-")}`}
+              />
+
+              <h2 class="text-xl font-semibold mt-3">
+                {post.data.title}
+              </h2>
+
+              <p class="text-gray-600 mt-2">
+                {post.data.description}
+              </p>
+
+              <div class="mt-5">
+                <Button href={`/blog/${post.slug}`}>
+                  Leer artículo
+                </Button>
+              </div>
+
+            </Card>
+          ))}
+
+        </div>
+
+        <!-- PAGINATION NAV -->
+        <div class="flex justify-between mt-12">
+
+          {page.url.prev && (
+            <a href={page.url.prev} class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+              ← Anterior
+            </a>
+          )}
+
+          {page.url.next && (
+            <a href={page.url.next} class="ml-auto px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
+              Siguiente →
+            </a>
+          )}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>

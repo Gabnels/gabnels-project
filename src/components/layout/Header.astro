@@ -1,14 +1,58 @@
+---
+import { TrendingUp, Scale, User, BookOpen, Mic } from "@lucide/astro";
+---
+
 <header class="border-b">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="font-semibold text-lg">Gabnels</div>
+    
+    <!-- Logo -->
+    <a href="/" class="font-semibold text-lg hover:text-blue-600 transition">
+      Gabnels
+    </a>
 
-    <nav>
-      <ul class="flex gap-6 text-sm">
-        <li><a href="#">Finanzas</a></li>
-        <li><a href="#">Crítica Social</a></li>
-        <li><a href="#">Autor</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
+    <!-- Navegación -->
+    <nav class="flex gap-8 text-sm font-medium items-center">
+
+      <a 
+        href="/finanzas" 
+        class="flex items-center gap-2 hover:text-blue-600 transition"
+      >
+        <TrendingUp size={18} />
+        <span>Finanzas</span>
+      </a>
+
+      <a 
+        href="/critica-social" 
+        class="flex items-center gap-2 hover:text-blue-600 transition"
+      >
+        <Scale size={18} />
+        <span>Crítica Social</span>
+      </a>
+
+      <a 
+        href="/autor" 
+        class="flex items-center gap-2 hover:text-blue-600 transition"
+      >
+        <User size={18} />
+        <span>Autor</span>
+      </a>
+
+      <a 
+        href="/blog" 
+        class="flex items-center gap-2 hover:text-blue-600 transition"
+      >
+        <BookOpen size={18} />
+        <span>Blog</span>
+      </a>
+
+      <a 
+        href="/podcast" 
+        class="flex items-center gap-2 hover:text-blue-600 transition"
+      >
+        <Mic size={18} />
+        <span>Podcast</span>
+      </a>
+
     </nav>
   </div>
 </header>

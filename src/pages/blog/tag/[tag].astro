@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SectionHeader from "../../../components/ui/SectionHeader.astro";
+import Card from "../../../components/ui/Card.astro";
+import Badge from "../../../components/ui/Badge.astro";
+import Button from "../../../components/ui/Button.astro";
+import Breadcrumb from "../../../components/ui/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+
+/* =========================
+   STATIC PATHS
+   ========================= */
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  // obtener todos los tags únicos
+  const tags = [...new Set(posts.flatMap(p => p.data.tags))];
+
+  return tags.map(tag => ({
+    params: { tag: tag.toLowerCase() },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+
+const posts = await getCollection("blog");
+
+// posts filtrados por tag
+const filteredPosts = posts
+  .filter(post => post.data.tags.map(t => t.toLowerCase()).includes(tag))
+  .sort((a,b) => new Date(b.data.date) - new Date(a.data.date));
+---
+
+<BaseLayout
+  title={`Tag: ${tag}`}
+  description={`Artículos etiquetados con ${tag}`}
+>
+
+<section class="section-soft">
+  <div class="container">
+
+    <SectionHeader
+      title={`Tag: ${tag}`}
+      subtitle="Artículos relacionados con esta etiqueta"
+    />
+
+    <div class="mt-4">
+      <Breadcrumb
+        items={[
+          { label: "Inicio", href: "/" },
+          { label: "Blog", href: "/blog" },
+          { label: `Tag: ${tag}` }
+        ]}
+      />
+    </div>
+
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-10">
+
+      {filteredPosts.length === 0 ? (
+        <p class="text-gray-500">No hay artículos con este tag.</p>
+      ) : (
+        filteredPosts.map(post => (
+          <Card>
+
+            <Badge
+              label={post.data.category}
+              href={`/blog/categoria/${post.data.category.toLowerCase()}`}
+            />
+
+            <h2 class="text-xl font-semibold mt-3">
+              {post.data.title}
+            </h2>
+
+            <p class="text-gray-600 mt-2">
+              {post.data.description}
+            </p>
+
+            <div class="mt-5">
+              <Button href={`/blog/${post.slug}`}>
+                Leer artículo
+              </Button>
+            </div>
+
+          </Card>
+        ))
+      )}
+
+    </div>
+
+  </div>
+</section>
+
+</BaseLayout>

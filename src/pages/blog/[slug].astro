@@ -1,0 +1,133 @@
+---
+import { getCollection } from "astro:content";
+import { Image, getImage } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { jsonLd } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+/* =========================
+   Imagen optimizada para OG
+   ========================= */
+
+const optimizedImage = await getImage({
+  src: post.data.image,
+  width: 1200,
+  height: 630,
+});
+
+/* =========================
+   SEO dinámico
+   ========================= */
+
+const pageTitle = post.data.title;
+const pageDescription = post.data.description;
+const pageUrl = `https://tudominio.com/blog/${post.slug}`;
+const imageUrl = new URL(optimizedImage.src, Astro.site).href;
+
+/* =========================
+   JSON-LD STRUCTURED DATA
+   ========================= */
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: pageTitle,
+  description: pageDescription,
+  image: imageUrl,
+  author: {
+    "@type": "Person",
+    name: "Gabnels"
+  },
+  datePublished: post.data.date,
+  mainEntityOfPage: pageUrl,
+  url: pageUrl,
+  keywords: post.data.tags?.join(", ")
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+
+  <Fragment slot="head">
+
+    <link rel="canonical" href={pageUrl} />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={imageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- JSON-LD -->
+    <Fragment set:html={jsonLd(structuredData)} />
+
+  </Fragment>
+
+  <!-- CONTENIDO -->
+  <article class="container py-16 max-w-3xl">
+
+    <!-- Imagen principal -->
+    <div class="mb-10">
+      <Image
+        src={post.data.image}
+        alt={post.data.title}
+        width={1200}
+        height={700}
+        class="w-full rounded-2xl object-cover"
+      />
+    </div>
+
+    <!-- categoría -->
+    <p class="text-sm text-gray-500 mb-2 uppercase tracking-wide">
+      {post.data.category}
+    </p>
+
+    <!-- título -->
+    <h1 class="text-4xl font-bold mb-4 leading-tight">
+      {post.data.title}
+    </h1>
+
+    <!-- TAGS visibles -->
+    {post.data.tags && (
+      <div class="flex flex-wrap gap-2 mb-6">
+        {post.data.tags.map(tag => (
+          <a
+            href={`/blog/tag/${tag.toLowerCase().replace(/\s+/g,"-")}`}
+            class="text-xs bg-gray-100 hover:bg-black hover:text-white px-3 py-1 rounded-full transition"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+    )}
+
+    <!-- descripción -->
+    <p class="text-gray-600 mb-10 text-lg">
+      {post.data.description}
+    </p>
+
+    <!-- contenido -->
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+
+  </article>
+
+</BaseLayout>

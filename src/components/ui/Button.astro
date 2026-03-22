@@ -1,0 +1,39 @@
+---
+const {
+  href = null,
+  variant = "primary",
+  size = "md",
+  children
+} = Astro.props;
+
+/* Variantes visuales */
+const variants = {
+  primary: "bg-brand-primary text-white hover:bg-brand-primaryHover",
+  secondary: "bg-brand-secondary text-white hover:opacity-90",
+  outline: "border border-brand-border text-brand-secondary hover:bg-brand-soft"
+};
+
+/* Tamaños */
+const sizes = {
+  sm: "px-3 py-1 text-sm",
+  md: "px-5 py-2 text-sm",
+  lg: "px-6 py-3 text-base"
+};
+
+const classes = `
+inline-flex items-center justify-center
+rounded-xl font-medium transition-all duration-200
+${variants[variant]}
+${sizes[size]}
+`;
+---
+
+{href ? (
+  <a href={href} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button class={classes}>
+    <slot />
+  </button>
+)}

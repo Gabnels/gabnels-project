@@ -1,0 +1,29 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="section-soft">
+    <div class="container max-w-3xl">
+
+      <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold mb-3">
+          {title}
+        </h1>
+
+        {description && (
+          <p class="text-gray-600 text-lg">
+            {description}
+          </p>
+        )}
+      </header>
+
+      <article class="prose prose-neutral max-w-none">
+        <slot />
+      </article>
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,161 +1,216 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import ArticleCard from "../components/content/ArticleCard.astro";
-import PodcastCard from "../components/content/PodcastCard.astro";
-import AboutAuthor from "../components/content/AboutAuthor.astro";
-import FinalCTA from "../components/content/FinalCTA.astro";
+import Hero from "../components/sections/Hero.astro";
+import FeaturedArticles from "../components/sections/FeaturedArticles.astro";
+import FeaturedPodcast from "../components/sections/FeaturedPodcast.astro";
+import AboutAuthor from "../components/sections/AboutAuthor.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+
+const podcastEpisodes = [
+{
+title: "Mentalidad financiera",
+description: "Cómo gestionar tu dinero y crecer tu patrimonio paso a paso.",
+link: "/podcast/mentalidad-financiera",
+episodeNumber: "12",
+image: "/images/podcast/episodio-uno.jpg"
+},
+{
+title: "Pensamiento crítico en la sociedad actual",
+description: "Reflexión sobre la información y manipulación en redes.",
+link: "/podcast/pensamiento-critico",
+episodeNumber: "11",
+image: "/images/podcast/episodio-dos.jpg"
+},
+{
+title: "Literatura y creatividad",
+description: "Cómo los libros pueden transformar tu forma de pensar.",
+link: "/podcast/literatura-creatividad",
+episodeNumber: "10",
+image: "/images/podcast/episodio-tres.jpg"
+}
+];
 ---
 
 <BaseLayout
   title="Inicio"
-  description="Blog de Gabnels sobre finanzas, crítica social y autoría"
+  description="Blog de Gabnels sobre finanzas, estrategia y pensamiento independiente"
 >
 
-  <!-- =========================
-       HERO (NO SE TOCA)
-       ========================= -->
+  <!-- HERO -->
   <Hero
-    title="Pensamiento independiente, finanzas y literatura"
-    subtitle="Análisis claros para quienes no se conforman con lo que les dicen."
+    title="Pensamiento estratégico para construir criterio y patrimonio"
+    subtitle="Finanzas, análisis cultural y visión digital para quienes quieren pensar y crecer diferente."
     ctaText="Explorar artículos"
-    ctaLink="/finanzas"
+    ctaLink="/blog"
   />
 
-  <!-- =========================
-       CUADRO DE PRUEBA (TAILWIND)
-       ========================= -->
-  <div class="bg-red-200 p-10 text-center">
-    PRUEBA TAILWIND
-  </div>
+  <!-- PILARES -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
 
-  <!-- =========================
-       PILARES DE CONTENIDO
-       ========================= -->
-  <section class="section-soft">
-    <div class="container text-center">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
-        Qué encontrarás aquí
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+        Los tres ejes de este proyecto
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-2xl font-bold mb-2">Finanzas</h3>
-          <p>
-            Aprende claridad y educación financiera, inversiones y negocios digitales.
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+        Un espacio donde las ideas se convierten en claridad estratégica.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-12">
+
+        <!-- FINANZAS -->
+        <div class="rounded-2xl p-8 text-left border border-blue-100 bg-blue-50 hover:shadow-lg hover:-translate-y-1 transition">
+
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">
+            Finanzas
+          </h3>
+
+          <p class="text-gray-700 mb-4">
+            Inversiones, mentalidad financiera y construcción de activos digitales.
           </p>
+
+          <a href="/blog" class="text-sm font-medium text-blue-700 hover:underline">
+            Explorar →
+          </a>
+
         </div>
 
-        <div>
-          <h3 class="text-2xl font-bold mb-2">Crítica Social</h3>
-          <p>
-            Reflexiona con pensamiento propio sobre la sociedad y temas polémicos.
+        <!-- CRITICA -->
+        <div class="rounded-2xl p-8 text-left border border-purple-100 bg-purple-50 hover:shadow-lg hover:-translate-y-1 transition">
+
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">
+            Crítica Cultural
+          </h3>
+
+          <p class="text-gray-700 mb-4">
+            Pensamiento independiente frente a narrativas sociales dominantes.
           </p>
+
+          <a href="/blog" class="text-sm font-medium text-purple-700 hover:underline">
+            Leer análisis →
+          </a>
+
         </div>
 
-        <div>
-          <h3 class="text-2xl font-bold mb-2">Autor</h3>
-          <p>
-            Explora mi obra, recomendaciones de libros y análisis literarios.
+        <!-- AUTOR -->
+        <div class="rounded-2xl p-8 text-left border border-emerald-100 bg-emerald-50 hover:shadow-lg hover:-translate-y-1 transition">
+
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">
+            Autor & Creatividad
+          </h3>
+
+          <p class="text-gray-700 mb-4">
+            Literatura, escritura estratégica y procesos creativos aplicados.
           </p>
+
+          <a href="/sobre-mi" class="text-sm font-medium text-emerald-700 hover:underline">
+            Conocer más →
+          </a>
+
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- =========================
-       CONTENIDO DESTACADO
-       ========================= -->
-  <section class="section-soft">
-    <div class="container">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
-        Contenido destacado
+  <!-- SERVICIOS -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+      <h2 class="text-3xl font-bold mb-4">
+        Trabajemos juntos
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <ArticleCard
-          title="Cómo invertir con seguridad"
-          excerpt="Aprende los fundamentos para hacer crecer tu dinero de manera inteligente."
-          link="/finanzas/como-invertir"
-          category="Finanzas"
-        />
+      <p class="text-gray-600 mb-8">
+        Consultoría estratégica para creadores y emprendedores digitales que buscan estructura real.
+      </p>
 
-        <ArticleCard
-          title="Reflexión sobre la sociedad actual"
-          excerpt="Analizamos los retos del pensamiento crítico en la era digital."
-          link="/critica-social/reflexion-sociedad"
-          category="Crítica social"
-        />
+      <a
+        href="/servicios"
+        class="inline-flex items-center border border-gray-900 text-gray-900 font-medium px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition"
+      >
+        Ver servicios
+      </a>
 
-        <ArticleCard
-          title="Mi último libro: estrategias de autor"
-          excerpt="Descubre el proceso de creación y recomendaciones de lectura."
-          link="/autor/ultimo-libro"
-          category="Autor"
-        />
-      </div>
     </div>
   </section>
 
-  <!-- =========================
-       PODCAST
-       ========================= -->
-  <section class="section-soft">
-    <div class="container">
-      <h2 class="text-2xl md:text-3xl font-semibold mb-12 text-gray-900 text-center">
-        Último episodio del Podcast
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <PodcastCard
-          title="Mentalidad financiera"
-          description="Cómo gestionar tu dinero y crecer tu patrimonio paso a paso."
-          link="/podcast/mentalidad-financiera"
-          episodeNumber="12"
-        />
-
-        <PodcastCard
-          title="Pensamiento crítico en la sociedad actual"
-          description="Reflexión sobre la información y manipulación en redes."
-          link="/podcast/pensamiento-critico"
-          episodeNumber="11"
-        />
-
-        <PodcastCard
-          title="Literatura y creatividad"
-          description="Cómo los libros pueden transformar tu forma de pensar."
-          link="/podcast/literatura-creatividad"
-          episodeNumber="10"
-        />
-      </div>
+  <!-- ARTÍCULOS -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <FeaturedArticles
+        title="Contenido estratégico"
+        subtitle="Artículos clave para desarrollar criterio"
+      />
     </div>
   </section>
 
-  <!-- =========================
-       SOBRE EL AUTOR
-       ========================= -->
-  <section class="section-soft">
-    <div class="container">
+  <!-- PRODUCTOS -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+
+      <h2 class="text-3xl font-bold mb-4">
+        Recursos y productos
+      </h2>
+
+      <p class="text-gray-600 mb-8">
+        Guías prácticas y herramientas diseñadas para construir activos digitales.
+      </p>
+
+      <a
+        href="/productos"
+        class="inline-flex items-center border border-gray-900 text-gray-900 font-medium px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition"
+      >
+        Explorar productos
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PODCAST -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <FeaturedPodcast
+        title="Reflexiones en audio"
+        subtitle="Conversaciones profundas sobre estrategia y cultura"
+        items={podcastEpisodes}
+      />
+    </div>
+  </section>
+
+  <!-- AUTOR -->
+  <section class="bg-white py-16">
+    <div class="max-w-6xl mx-auto px-6">
       <AboutAuthor
         name="Gabnels"
-        description="Soy un creador de contenido apasionado por las finanzas, la crítica social y la literatura. Aquí comparto mi visión y experiencias."
-        imageUrl="/images/author.jpg"
+        description="Construyo ideas que ayudan a pensar mejor, invertir mejor y crear proyectos digitales con estructura real."
+        imageUrl="/images/authorGabnels.jpeg"
         link="/sobre-mi"
       />
     </div>
   </section>
 
-  <!-- =========================
-       CTA FINAL
-       ========================= -->
-  <section class="section-soft">
-    <div class="container">
-      <FinalCTA
-        title="No te pierdas ninguna actualización"
-        description="Suscríbete al newsletter y recibe los mejores contenidos directo en tu correo."
-        buttonText="Suscribirme"
-        buttonLink="/newsletter"
-      />
+  <!-- NEWSLETTER -->
+  <section class="bg-gray-900 py-16">
+    <div class="max-w-3xl mx-auto px-6 text-center text-white">
+
+      <h2 class="text-3xl font-bold mb-4">
+        Newsletter estratégica (Premium)
+      </h2>
+
+      <p class="text-gray-300 mb-8">
+        Análisis exclusivos y frameworks prácticos que no publico en abierto.
+      </p>
+
+      <a
+        href="/newsletter"
+        class="inline-flex items-center bg-white text-gray-900 font-medium px-6 py-3 rounded-lg hover:bg-gray-200 transition"
+      >
+        Suscribirme ahora
+      </a>
+
     </div>
   </section>
 

@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+
+const { activeCategory } = Astro.props;
+
+const posts = await getCollection("blog");
+
+// contar posts por categoría
+const categoryCount = posts.reduce((acc, post) => {
+  const cat = post.data.category;
+  acc[cat] = (acc[cat] || 0) + 1;
+  return acc;
+}, {});
+
+// convertir a array ordenado
+const categories = Object.entries(categoryCount).sort();
+---
+
+<aside class="bg-white rounded-xl shadow-sm p-6">
+
+  <h3 class="font-semibold mb-4">Categorías</h3>
+
+  <ul class="space-y-2">
+
+    {categories.map(([category, count]) => {
+
+      const slug = category.toLowerCase().replace(/\s+/g,"-");
+      const isActive = slug === activeCategory;
+
+      return (
+        <li>
+          <a
+            href={`/blog/categoria/${slug}`}
+            class={`flex justify-between items-center px-3 py-2 rounded-lg transition
+            ${isActive 
+              ? "bg-black text-white"
+              : "hover:bg-gray-100 text-gray-700"
+            }`}
+          >
+            <span>{category}</span>
+            <span class="text-sm opacity-70">({count})</span>
+          </a>
+        </li>
+      );
+    })}
+
+  </ul>
+
+</aside>

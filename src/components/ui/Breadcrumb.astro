@@ -1,0 +1,44 @@
+---
+/**
+ * Props:
+ * items = [
+ *   { label: "Inicio", href: "/" },
+ *   { label: "Blog", href: "/blog" },
+ *   { label: "Finanzas" }
+ * ]
+ */
+
+const { items = [] } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="text-sm text-gray-500">
+  <ol class="flex flex-wrap items-center gap-2">
+
+    {items.map((item, i) => (
+      <li class="flex items-center gap-2">
+
+        {i !== 0 && (
+          <span aria-hidden="true" class="text-gray-400">/</span>
+        )}
+
+        {item.href ? (
+          <a
+            href={item.href}
+            class="hover:text-black transition-colors"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span
+            class="text-gray-900 font-medium"
+            aria-current="page"
+          >
+            {item.label}
+          </span>
+        )}
+
+      </li>
+    ))}
+
+  </ol>
+</nav>
