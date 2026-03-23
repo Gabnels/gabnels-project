@@ -1,31 +1,46 @@
 ---
-const { title, description, link, episodeNumber } = Astro.props;
+import Card from "../ui/Card.astro";
+import CardTitle from "../ui/CardTitle.astro";
+import CardContent from "../ui/CardContent.astro";
+import CardFooter from "../ui/CardFooter.astro";
+
+const { title, description, link, episodeNumber, image } = Astro.props;
 ---
 
-<article
-  class="group p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-4
-         transition-all duration-300
-         hover:bg-white hover:shadow-lg hover:-translate-y-1"
->
-  <span class="text-sm text-gray-500">
-    Episodio {episodeNumber}
-  </span>
+<Card class="overflow-hidden p-0">
 
-  <h3
-    class="text-xl font-semibold text-gray-900
-           group-hover:text-blue-600 transition-colors"
-  >
-    {title}
-  </h3>
+  {image && (
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-48 object-cover"
+      loading="lazy"
+    />
+  )}
 
-  <p class="text-gray-600">
-    {description}
-  </p>
+  <div class="p-6 space-y-3">
 
-  <a
-    href={link}
-    class="font-medium text-blue-600 group-hover:underline"
-  >
-    Escuchar →
-  </a>
-</article>
+    <span class="text-sm text-gray-500">
+      Episodio {episodeNumber}
+    </span>
+
+    <CardTitle>
+      {title}
+    </CardTitle>
+
+    <CardContent>
+      {description}
+    </CardContent>
+
+    <CardFooter>
+      <a
+        href={link}
+        class="text-blue-600 font-medium text-sm hover:underline"
+      >
+        Escuchar →
+      </a>
+    </CardFooter>
+
+  </div>
+
+</Card>

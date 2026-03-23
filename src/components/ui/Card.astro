@@ -1,7 +1,36 @@
 ---
-const { padding = "p-6" } = Astro.props;
+const {
+  variant = "default",
+  class: className = "",
+  padding,
+  hover = true
+} = Astro.props;
+
+const variants = {
+  default: "bg-white border border-gray-200",
+
+  finance: "bg-blue-50 border border-blue-100",
+  critical: "bg-purple-50 border border-purple-100",
+  author: "bg-emerald-50 border border-emerald-100",
+};
+
+const basePadding = padding ?? (variant === "default" ? "p-6" : "p-8");
+
+const hoverStyles = hover
+  ? "hover:shadow-lg hover:-translate-y-1 hover:border-gray-300"
+  : "";
 ---
 
-<div class={`bg-brand-card shadow-card rounded-2xl ${padding}`}>
+<div
+  class={`
+    group
+    rounded-2xl
+    transition-all duration-300
+    ${variants[variant]}
+    ${basePadding}
+    ${hoverStyles}
+    ${className}
+  `}
+>
   <slot />
 </div>

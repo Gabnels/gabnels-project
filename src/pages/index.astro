@@ -4,7 +4,13 @@ import Hero from "../components/sections/Hero.astro";
 import FeaturedArticles from "../components/sections/FeaturedArticles.astro";
 import FeaturedPodcast from "../components/sections/FeaturedPodcast.astro";
 import AboutAuthor from "../components/sections/AboutAuthor.astro";
+import Card from "../components/ui/Card.astro";
+import CardIcon from "../components/ui/CardIcon.astro";
+import CardTitle from "../components/ui/CardTitle.astro";
+import CardContent from "../components/ui/CardContent.astro";
+import CardFooter from "../components/ui/CardFooter.astro";
 import { getCollection } from "astro:content";
+import { TrendingUp, Brain, BookOpen } from "@lucide/astro";
 
 const posts = await getCollection("blog");
 
@@ -47,95 +53,97 @@ image: "/images/podcast/episodio-tres.jpg"
   />
 
   <!-- PILARES -->
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-6xl mx-auto px-6 text-center">
+<section class="bg-gray-50 py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
 
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
-        Los tres ejes de este proyecto
-      </h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+      Los tres ejes de este proyecto
+    </h2>
 
-      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-        Un espacio donde las ideas se convierten en claridad estratégica.
-      </p>
+    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+      Un espacio donde las ideas se convierten en claridad estratégica.
+    </p>
 
-      <div class="grid md:grid-cols-3 gap-6 mt-12">
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
 
-        <!-- FINANZAS -->
-        <div class="rounded-2xl p-8 text-left border border-blue-100 bg-blue-50 hover:shadow-lg hover:-translate-y-1 transition">
+      <!-- FINANZAS -->
+      <Card variant="finance" class="text-left">
 
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">
-            Finanzas
-          </h3>
+        <CardIcon>
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+            <TrendingUp size={22} strokeWidth={1.8} />
+          </div>
+        </CardIcon>
 
-          <p class="text-gray-700 mb-4">
-            Inversiones, mentalidad financiera y construcción de activos digitales.
-          </p>
+        <CardTitle>
+          Finanzas
+        </CardTitle>
 
+        <CardContent>
+          Inversiones, mentalidad financiera y construcción de activos digitales.
+        </CardContent>
+
+        <CardFooter>
           <a href="/blog" class="text-sm font-medium text-blue-700 hover:underline">
             Explorar →
           </a>
+        </CardFooter>
 
-        </div>
+      </Card>
 
-        <!-- CRITICA -->
-        <div class="rounded-2xl p-8 text-left border border-purple-100 bg-purple-50 hover:shadow-lg hover:-translate-y-1 transition">
+      <!-- CRITICA -->
+      <Card variant="critical" class="text-left">
 
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">
-            Crítica Cultural
-          </h3>
+        <CardIcon>
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+            <Brain size={22} strokeWidth={1.8} />
+          </div>
+        </CardIcon>
 
-          <p class="text-gray-700 mb-4">
-            Pensamiento independiente frente a narrativas sociales dominantes.
-          </p>
+        <CardTitle>
+          Crítica Cultural
+        </CardTitle>
 
+        <CardContent>
+          Pensamiento independiente frente a narrativas sociales dominantes.
+        </CardContent>
+
+        <CardFooter>
           <a href="/blog" class="text-sm font-medium text-purple-700 hover:underline">
             Leer análisis →
           </a>
+        </CardFooter>
 
-        </div>
+      </Card>
 
-        <!-- AUTOR -->
-        <div class="rounded-2xl p-8 text-left border border-emerald-100 bg-emerald-50 hover:shadow-lg hover:-translate-y-1 transition">
+      <!-- AUTOR -->
+      <Card variant="author" class="text-left">
 
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">
-            Autor & Creatividad
-          </h3>
+        <CardIcon>
+          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+            <BookOpen size={22} strokeWidth={1.8} />
+          </div>
+        </CardIcon>
 
-          <p class="text-gray-700 mb-4">
-            Literatura, escritura estratégica y procesos creativos aplicados.
-          </p>
+        <CardTitle>
+          Autor & Creatividad
+        </CardTitle>
 
+        <CardContent>
+          Literatura, escritura estratégica y procesos creativos aplicados.
+        </CardContent>
+
+        <CardFooter>
           <a href="/sobre-mi" class="text-sm font-medium text-emerald-700 hover:underline">
             Conocer más →
           </a>
+        </CardFooter>
 
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICIOS -->
-  <section class="bg-white py-16">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-
-      <h2 class="text-3xl font-bold mb-4">
-        Trabajemos juntos
-      </h2>
-
-      <p class="text-gray-600 mb-8">
-        Consultoría estratégica para creadores y emprendedores digitales que buscan estructura real.
-      </p>
-
-      <a
-        href="/servicios"
-        class="inline-flex items-center border border-gray-900 text-gray-900 font-medium px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition"
-      >
-        Ver servicios
-      </a>
+      </Card>
 
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ARTÍCULOS -->
   <section class="bg-gray-50 py-16">
