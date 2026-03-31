@@ -45,100 +45,77 @@ image: "/images/podcast/episodio-tres.jpg"
 >
 
   <!-- HERO -->
-  <Hero
-    title="Pensamiento estratégico para construir criterio y patrimonio"
-    subtitle="Finanzas, análisis cultural y visión digital para quienes quieren pensar y crecer diferente."
-    ctaText="Explorar artículos"
-    ctaLink="/blog"
-  />
+  <Hero />
 
   <!-- PILARES -->
 <section class="bg-gray-50 py-16">
   <div class="max-w-6xl mx-auto px-6 text-center">
 
     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
-      Los tres ejes de este proyecto
+      De la confusión a la claridad estratégica
     </h2>
 
     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-      Un espacio donde las ideas se convierten en claridad estratégica.
+      Tres pilares para dejar de consumir contenido sin avanzar y empezar a construir ingresos reales en internet.
     </p>
 
     <div class="grid md:grid-cols-3 gap-6 mt-12">
 
-      <!-- FINANZAS -->
+      <!-- ESTRATEGIA & DINERO -->
       <Card variant="finance" class="text-left">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4 bg-blue-100 text-blue-700 group-hover:scale-110 transition">
+          <TrendingUp size={22} strokeWidth={1.8} />
+        </div>
 
-        <CardIcon>
-          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-100 text-blue-700">
-            <TrendingUp size={22} strokeWidth={1.8} />
-          </div>
-        </CardIcon>
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+          Estrategia & Dinero
+        </h3>
 
-        <CardTitle>
-          Finanzas
-        </CardTitle>
+        <p class="text-gray-700 mb-4">
+          Aprende a tomar decisiones inteligentes, entender el dinero y construir ingresos con enfoque a largo plazo.
+        </p>
 
-        <CardContent>
-          Inversiones, mentalidad financiera y construcción de activos digitales.
-        </CardContent>
-
-        <CardFooter>
-          <a href="/blog" class="text-sm font-medium text-blue-700 hover:underline">
-            Explorar →
-          </a>
-        </CardFooter>
-
+        <a href="/blog" class="text-sm font-medium text-blue-700 hover:underline">
+          Explorar →
+        </a>
       </Card>
 
-      <!-- CRITICA -->
+      <!-- PENSAMIENTO CRÍTICO -->
       <Card variant="critical" class="text-left">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4 bg-purple-100 text-purple-700 group-hover:scale-110 transition">
+          <Brain size={22} strokeWidth={1.8} />
+        </div>
 
-        <CardIcon>
-          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-100 text-purple-700">
-            <Brain size={22} strokeWidth={1.8} />
-          </div>
-        </CardIcon>
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+          Pensamiento Crítico
+        </h3>
 
-        <CardTitle>
-          Crítica Cultural
-        </CardTitle>
+        <p class="text-gray-700 mb-4">
+          Desarrolla criterio propio y aprende a filtrar la información para no caer en falsas promesas ni distracciones.
+        </p>
 
-        <CardContent>
-          Pensamiento independiente frente a narrativas sociales dominantes.
-        </CardContent>
-
-        <CardFooter>
-          <a href="/blog" class="text-sm font-medium text-purple-700 hover:underline">
-            Leer análisis →
-          </a>
-        </CardFooter>
-
+        <a href="/blog" class="text-sm font-medium text-purple-700 hover:underline">
+          Leer análisis →
+        </a>
       </Card>
 
-      <!-- AUTOR -->
+      <!-- CREACIÓN & SISTEMAS -->
       <Card variant="author" class="text-left">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl mb-4 bg-emerald-100 text-emerald-700 group-hover:scale-110 transition">
+          <BookOpen size={22} strokeWidth={1.8} />
+        </div>
 
-        <CardIcon>
-          <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
-            <BookOpen size={22} strokeWidth={1.8} />
-          </div>
-        </CardIcon>
+        <h3 class="text-lg font-semibold text-gray-900 mb-3">
+          Creación & Sistemas
+        </h3>
 
-        <CardTitle>
-          Autor & Creatividad
-        </CardTitle>
+        <p class="text-gray-700 mb-4">
+          Convierte ideas en contenido, proyectos y activos digitales que puedan crecer y generar valor con el tiempo.
+        </p>
 
-        <CardContent>
-          Literatura, escritura estratégica y procesos creativos aplicados.
-        </CardContent>
-
-        <CardFooter>
-          <a href="/sobre-mi" class="text-sm font-medium text-emerald-700 hover:underline">
-            Conocer más →
-          </a>
-        </CardFooter>
-
+        <a href="/sobre-mi" class="text-sm font-medium text-emerald-700 hover:underline">
+          Conocer más →
+        </a>
       </Card>
 
     </div>
@@ -156,26 +133,75 @@ image: "/images/podcast/episodio-tres.jpg"
   </section>
 
   <!-- PRODUCTOS -->
-  <section class="bg-white py-16">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+<section class="mt-16 max-w-6xl mx-auto px-4">
 
-      <h2 class="text-3xl font-bold mb-4">
-        Recursos y productos
-      </h2>
+  <div class="grid lg:grid-cols-3 gap-8 auto-rows-fr">
 
-      <p class="text-gray-600 mb-8">
-        Guías prácticas y herramientas diseñadas para construir activos digitales.
+    <!-- 🟣 CARD GRANDE -->
+    <div class="lg:col-span-2 p-8 rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white relative overflow-hidden h-full flex flex-col shadow-2xl hover:-translate-y-1 transition duration-300">
+
+      <span class="text-xs bg-white/20 px-3 py-1 rounded-full w-fit mb-4">
+        Más popular
+      </span>
+
+      <h3 class="text-2xl font-semibold">
+        Deja de perder tiempo y empieza a generar ingresos online con un sistema probado
+      </h3>
+
+      <p class="mt-4 text-white/90 max-w-md flex-grow">
+        Si no sabes por dónde empezar o ya intentaste sin resultados, aquí tienes un sistema claro paso a paso para construir ingresos digitales desde cero.
       </p>
 
-      <a
-        href="/productos"
-        class="inline-flex items-center border border-gray-900 text-gray-900 font-medium px-6 py-3 rounded-lg hover:bg-gray-900 hover:text-white transition"
-      >
-        Explorar productos
+      <a href="/productos/sistemas"
+         class="mt-auto inline-block bg-white text-gray-900 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition">
+        Quiero empezar desde cero →
       </a>
 
+      <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
     </div>
-  </section>
+
+    <!-- 🟢 COLUMNA DERECHA -->
+    <div class="flex flex-col gap-8 h-full">
+
+      <!-- CARD 1 -->
+      <div class="p-6 rounded-2xl bg-white border border-gray-200 hover:shadow-2xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
+        
+        <h3 class="text-xl font-semibold text-gray-900">
+          Aprende antes de ejecutar
+        </h3>
+
+        <p class="mt-3 text-gray-600 flex-grow">
+          Si aún estás entendiendo cómo funciona esto, empieza con contenido claro y sin humo.
+        </p>
+
+        <a href="/productos/guias" class="mt-auto inline-block text-blue-600 font-medium">
+          Empezar a aprender →
+        </a>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="p-6 rounded-2xl bg-white border border-gray-200 hover:shadow-2xl hover:-translate-y-1 transition duration-300 h-full flex flex-col">
+        
+        <h3 class="text-xl font-semibold text-gray-900">
+          ¿Quieres ir más rápido?
+        </h3>
+
+        <p class="mt-3 text-gray-600 flex-grow">
+          Trabajamos directamente en tu caso para evitar errores y avanzar con claridad.
+        </p>
+
+        <a href="/productos/consultoria" class="mt-auto inline-block text-blue-600 font-medium">
+          Quiero ayuda personalizada →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- PODCAST -->
   <section class="bg-gray-50 py-16">

@@ -1,48 +1,59 @@
 ---
-import { Image } from "astro:assets";
-import author from "../../assets/hero/gabnels-author.jpg";
-
 const { title, subtitle, ctaText, ctaLink } = Astro.props;
 ---
 
-<section class="bg-white py-32">
-  <div class="container grid md:grid-cols-2 gap-12 items-center">
+<section class="px-6 md:px-12 lg:px-20 py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-12 items-center min-h-[70vh]">
 
-    <!-- TEXTO -->
-    <div class="text-center md:text-left max-w-xl mx-auto md:mx-0">
-      <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 mb-6">
-        {title}
+    <!-- LEFT -->
+    <div class="max-w-xl">
+
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+        Deja de consumir contenido sin avanzar.
+        <br class="hidden md:block" />
+        Empieza a construir ingresos en internet con estrategia.
       </h1>
 
-      <p class="text-xl text-gray-600 mb-10">
-        {subtitle}
+      <p class="mt-6 text-lg text-gray-600">
+        Te ayudo a pasar de la confusión a la claridad para que puedas crear proyectos digitales, entender el dinero y tomar decisiones con criterio propio.
       </p>
 
-      {ctaText && ctaLink && (
+      <div class="mt-8 flex flex-wrap gap-4">
         <a
-          href={ctaLink}
-          class="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+          href="/blog"
+          class="px-6 py-3 rounded-xl bg-blue-600 text-white font-medium
+                 hover:bg-blue-700 transition"
         >
-          {ctaText}
+          Empezar ahora
         </a>
-      )}
+
+        <a
+          href="#newsletter"
+          class="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 font-medium
+                 hover:bg-gray-100 transition"
+        >
+          Ver contenido exclusivo
+        </a>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-500">
+        Sin fórmulas mágicas. Sin humo. Solo estrategia real.
+      </p>
+
     </div>
 
-    <!-- IMAGEN -->
-    <div class="flex justify-center md:justify-end">
-  <div class="relative max-w-md">
+    <!-- RIGHT -->
+    <div class="flex justify-center">
+      <div class="rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition">
+    
+        <img
+          src="/images/gabnels-author.jpg"
+          alt="Gabnels"
+          class="w-full max-w-[420px] h-auto rounded-2xl object-cover"
+        />
 
-    <div class="absolute inset-0 bg-gradient-to-tr from-blue-50 to-transparent rounded-3xl -z-10"></div>
-
-    <Image
-      src={author}
-      alt="Gabnels - Author"
-      width={500}
-      height={600}
-      class="rounded-3xl shadow-xl object-cover"
-      priority
-    />
+      </div>
+    </div>
 
   </div>
-</div>
 </section>
