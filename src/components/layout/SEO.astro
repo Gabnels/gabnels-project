@@ -1,21 +1,25 @@
 ---
 const {
-  title = "Gabnels", 
-  description = "Marca personal sobre finanzas, crítica social y autoría", 
-  url = "https://www.tusitio.com",
-  image = "https://www.tusitio.com/og-image.jpg"
+  title = "Gabnels",
+  description = "Sistema práctico para dejar la confusión y empezar a construir ingresos online con claridad y estructura",
+  image = "/og-image.jpg"
 } = Astro.props;
+
+// URL dinámica real de la página
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "http://localhost:4321");
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={url} />
+
+<!-- Canonical dinámico -->
+<link rel="canonical" href={canonicalURL} />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={image} />
 
 <!-- Twitter Card -->
