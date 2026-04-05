@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gabnels-project.vercel.app/sitemap.xml
+# Sitemap principal (indexado)
+Sitemap: https://gabnels-project.vercel.app/sitemap-index.xml
