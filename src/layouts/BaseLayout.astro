@@ -74,5 +74,24 @@ document.addEventListener("DOMContentLoaded", initReveal);
 document.addEventListener("astro:after-swap", initReveal);
 </script>
 
+<script>
+  function trackCTA(event) {
+    const el = event.currentTarget;
+
+    const payload = {
+      type: el.dataset.cta,
+      category: el.dataset.category,
+      link: el.dataset.link,
+      page: window.location.pathname,
+      timestamp: new Date().toISOString()
+    };
+
+    console.log("CTA CLICK:", payload);
+
+    // 🚫 NO redirigir (solo debug)
+    event.preventDefault();
+  }
+</script>
+
   </body>
 </html>

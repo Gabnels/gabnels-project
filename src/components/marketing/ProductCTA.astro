@@ -1,16 +1,42 @@
-<section class="mt-12 p-6 bg-gray-100 rounded-xl text-center">
-  <h3 class="text-xl font-semibold mb-3">
-    ¿Quieres dejar de estar perdido?
-  </h3>
+---
+const { category } = Astro.props;
 
-  <p class="text-gray-600 mb-4">
-    Sigue un sistema claro paso a paso para empezar a generar ingresos online desde cero.
-  </p>
+// fallback por defecto
+let title = "Empieza a generar ingresos online";
+let description = "Sigue un sistema probado paso a paso.";
+let link = "/productos/sistema";
 
+// lógica dinámica
+if (category === "Finanzas") {
+  title = "Aprende a invertir con estrategia";
+  description = "Domina los fundamentos para hacer crecer tu dinero.";
+  link = "/productos/inversion";
+}
+
+if (category === "Negocios") {
+  title = "Crea ingresos desde cero";
+  description = "Sistema paso a paso para emprender online.";
+  link = "/productos/sistema";
+}
+
+if (category === "Marketing") {
+  title = "Aprende a vender en internet";
+  description = "Convierte tráfico en clientes reales.";
+  link = "/productos/marketing";
+}
+---
+
+<div class="bg-black text-white p-8 rounded-2xl text-center">
+  <h3 class="text-2xl font-bold mb-3">{title}</h3>
+  <p class="text-white/70 mb-6">{description}</p>
   <a
-    href="/productos/sistema"
-    class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+    href={link}
+    class="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition"
+    data-cta="blog-footer"
+    data-category={category}
+    data-link={link}
+    onclick="trackCTA(event)"
   >
-    Ver el sistema →
+    Ver ahora
   </a>
-</section>
+</div>
